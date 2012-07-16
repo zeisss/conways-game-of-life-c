@@ -12,7 +12,10 @@ int args_w = 80, args_h = 44, args_p = 30;
 void usage(char *name) {
   printf("Usage: %s [options]\n", name);
   printf("\n");
-  printf("\t-v verbose\n");
+  printf("\t-w WIDTH (default 80)\n");
+  printf("\t-H HEIGHT (default 44)\n");
+  printf("\t-p PERCENTAGE (default 30)\n");
+  printf("\t-h Shows this help\n");
   printf("\n");
 }
 
