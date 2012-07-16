@@ -6,6 +6,8 @@
 
 Server *server;
 int args_w = 80, args_h = 44, args_p = 30;
+
+char *alive = "x", *dead = " ";
 /**
  * Prints the usage table.
  */
@@ -15,6 +17,7 @@ void usage(char *name) {
   printf("\t-w WIDTH (default 80)\n");
   printf("\t-H HEIGHT (default 44)\n");
   printf("\t-p PERCENTAGE (default 30)\n");
+  printf("\t-n negative output\n");
   printf("\t-h Shows this help\n");
   printf("\n");
 }
@@ -38,6 +41,10 @@ int parse_args(int argc, char* argv[]) {
     else if (strncmp("-p", argv[argc - 1], 2) == 0) {
       args_p = atoi(argv[argc]);
     }
+    else if(strncmp("-n",  argv[argc - 1], 2) == 0) {
+      alive = " ";
+      dead = "o";
+    }
   }
   return 1;
 }
@@ -49,9 +56,9 @@ void render_fields(Server *s) {
     for (x = 0; x < s->width; x++) {
       value = s->fields[x + y * s->width];
       if (value > 0) {
-        printf("x ");
+        printf("%s ", alive);
       } else {
-        printf("  ");
+        printf("%s ", dead);
       }
     }
     printf("|\n");

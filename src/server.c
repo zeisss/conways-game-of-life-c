@@ -10,10 +10,10 @@ void server_populate_random(Server *server, int population);
 #define DEAD 0
 
 Server * server_create(int w, int h, int population) {
-  Server * s = (Server*)malloc(sizeof(Server));
+  Server * s = (Server*) malloc(sizeof(Server));
   s->width = w;
   s->height = h;
-  s->fields = (int*)malloc(sizeof(int) * w * h);
+  s->fields = (int*) malloc(sizeof(int) * w * h);
   memset(s->fields, DEAD, sizeof(int) * w * h);
   if (population > 0) 
     server_populate_random(s, population);
