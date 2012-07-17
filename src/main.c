@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <time.h>
 #include "server.h"
 
 Server *server;
@@ -70,7 +71,7 @@ int main(int argc, char* argv[]) {
   if (parse_args(argc, argv) == 0) {
     exit(0);
   }
-
+  srand(time(0));
   printf("Game of Life\n");
   printf("============\n");
   printf("Starting up ...\n");

@@ -22,7 +22,7 @@ Server * server_create(int w, int h, int population) {
 
 void server_populate_random(Server *server, int population) {
   while (population > 0) {
-    int i = random() % (server->height * server->width);
+    int i = rand() % (server->height * server->width);
     
     // printf("%d\n", i);
 
