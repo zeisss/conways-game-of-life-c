@@ -81,7 +81,7 @@ int main(int argc, char* argv[]) {
   while (1) {
     render_fields(server);
     server_update(server);
-    sleep (1);
+    usleep (100 * 1000);
   }
   return 0;
 }
