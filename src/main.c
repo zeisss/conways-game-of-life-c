@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <time.h>
+#include <signal.h>
 #include "server.h"
 
 Server *server;
@@ -67,15 +68,25 @@ void render_fields(Server *s) {
   printf("Generation %ld\n", server->generation);
 }
 
+void shutdown_hook(int sig) {
+  server_close(server);
+  printf("Bye bye.\n");
+  exit(0);
+}
+
 int main(int argc, char* argv[]) {
   if (parse_args(argc, argv) == 0) {
     exit(0);
   }
-  srand(time(0));
+
   printf("Game of Life\n");
   printf("============\n");
   printf("Starting up ...\n");
 
+  // Initialization
+  srand(time(0));
+  signal(SIGTERM, shutdown_hook);
+  signal(SIGINT, shutdown_hook);
   server = server_create(args_w, args_h, (int)(args_w * args_h * args_p  / 100));
 
   while (1) {
